@@ -1,0 +1,75 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net6.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <None Remove="Exceptions\" />
+    <None Remove="Exceptions\Abstractions\" />
+    <None Remove="Abstractions\" />
+    <None Remove="Dispatchers\" />
+    <None Remove="Microsoft.Extensions.DependencyInjection.Abstractions" />
+    <None Remove="Scrutor" />
+    <None Remove="DAL\" />
+    <None Remove="Microsoft.EntityFrameworkCore" />
+    <None Remove="Entities\" />
+    <None Remove="Ardalis.SmartEnum" />
+    <None Remove="Entities\Abstractions\" />
+    <None Remove="DAL\Configurations\" />
+    <None Remove="DAL\Repositories\" />
+    <None Remove="DAL\Abstractions\" />
+    <None Remove="Pagination\" />
+    <None Remove="Microsoft.Extensions.Configuration.Abstractions" />
+    <None Remove="Npgsql.EntityFrameworkCore.PostgreSQL" />
+    <None Remove="Microsoft.Extensions.Hosting.Abstractions" />
+    <None Remove="Enums\" />
+    <None Remove="Microsoft.Extensions.Configuration.Binder" />
+    <None Remove="Repositories\" />
+    <None Remove="Microsoft.Extensions.Configuration" />
+    <None Remove="Microsoft.Extensions.Options.ConfigurationExtensions" />
+    <None Remove="Microsoft.EntityFrameworkCore.Tools" />
+    <None Remove="Microsoft.EntityFrameworkCore.Relational" />
+    <None Remove="Queries\" />
+    <None Remove="Queries\Handlers\" />
+    <None Remove="DTOs\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Exceptions\" />
+    <Folder Include="Exceptions\Abstractions\" />
+    <Folder Include="Abstractions\" />
+    <Folder Include="Handlers\" />
+    <Folder Include="Dispatchers\" />
+    <Folder Include="DAL\" />
+    <Folder Include="Entities\" />
+    <Folder Include="Entities\Abstractions\" />
+    <Folder Include="DAL\Configurations\" />
+    <Folder Include="DAL\Repositories\" />
+    <Folder Include="DAL\Abstractions\" />
+    <Folder Include="Pagination\" />
+    <Folder Include="Enums\" />
+    <Folder Include="Repositories\" />
+    <Folder Include="Queries\" />
+    <Folder Include="Queries\Handlers\" />
+    <Folder Include="DTOs\" />
+  </ItemGroup>
+  <ItemGroup>
+    <PackageReference Include="Microsoft.Extensions.DependencyInjection.Abstractions" Version="7.0.0" />
+    <PackageReference Include="Scrutor" Version="4.2.0" />
+    <PackageReference Include="Ardalis.SmartEnum" Version="2.1.0" />
+    <PackageReference Include="Npgsql.EntityFrameworkCore.PostgreSQL" Version="7.0.1" />
+    <PackageReference Include="Microsoft.Extensions.Hosting.Abstractions" Version="7.0.0" />
+    <PackageReference Include="Microsoft.Extensions.Configuration.Abstractions" Version="7.0.0" />
+    <PackageReference Include="Microsoft.Extensions.Configuration.Binder" Version="7.0.2" />
+    <PackageReference Include="Microsoft.Extensions.Configuration" Version="7.0.0" />
+    <PackageReference Include="Microsoft.Extensions.Options.ConfigurationExtensions" Version="7.0.0" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="7.0.2">
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+      <PrivateAssets>all</PrivateAssets>
+    </PackageReference>
+    <PackageReference Include="Microsoft.EntityFrameworkCore" Version="7.0.2" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Relational" Version="7.0.2" />
+  </ItemGroup>
+</Project>
