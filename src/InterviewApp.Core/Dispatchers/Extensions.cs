@@ -7,19 +7,19 @@ public static class Extensions
 {
     public static IServiceCollection AddHandlers(this IServiceCollection services)
     {
-        var assemblies = AppDomain.CurrentDomain.GetAssemblies().ToArray();
+        var asm = typeof(Extensions).Assembly;
 
-        services.Scan(s => s.FromAssemblies(assemblies)
+        services.Scan(s => s.FromAssemblies(asm)
             .AddClasses(c => c.AssignableTo(typeof(ICommandHandler<>)))
             .AsImplementedInterfaces()
             .WithScopedLifetime());
 
-        services.Scan(s => s.FromAssemblies(assemblies)
+        services.Scan(s => s.FromAssemblies(asm)
             .AddClasses(c => c.AssignableTo(typeof(IEventHandler<>)))
             .AsImplementedInterfaces()
             .WithScopedLifetime());
 
-        services.Scan(s => s.FromAssemblies(assemblies)
+        services.Scan(s => s.FromAssemblies(asm)
             .AddClasses(c => c.AssignableTo(typeof(IQueryHandler<,>)))
             .AsImplementedInterfaces()
             .WithScopedLifetime());

@@ -2,7 +2,7 @@
 using InterviewApp.API.Exceptions.Mappers;
 using InterviewApp.API.Exceptions.Middlewares;
 
-namespace InterviewApp.API.Extensions;
+namespace InterviewApp.API.Exceptions;
 
 internal static class ErrorHandlingExtensions
 {

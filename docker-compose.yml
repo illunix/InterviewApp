@@ -1,28 +1,36 @@
-version: '3.5'
-
+version: '3.8'
 services:
   api:
-    build: src/InterviewApp.API
+    build: src/
     ports:
       - 80:80
     depends_on:
-      - db
+      - postgres
       - seq
   postgres:
-    container_name: postgres
-    image: postgres:latest
+    image: postgres:14.1-alpine
+    restart: always
     environment:
-      POSTGRES_USER: dev
-      POSTGRES_PASSWORD: secretPassword
-      PGDATA: /data/postgres
-    volumes:
-       - postgres-db:/data/postgres
+      - POSTGRES_USER=dev
+      - POSTGRES_PASSWORD=postgres
     ports:
-      - "5432:5432"
+      - '5433:5433'
+    volumes: 
+      - postgres:/var/lib/postgresql/data
+    command: -p 5433
+  cache:
+    image: redis:latest
+    restart: always
+    ports:
+      - '6379:6379'
+    volumes: 
+      - cache:/data
   seq:
     image: datalust/seq:latest
     ports:
       - "5341:80"
 volumes:
-  postgres-db:
+  postgres:
+    driver: local
+  cache:
     driver: local

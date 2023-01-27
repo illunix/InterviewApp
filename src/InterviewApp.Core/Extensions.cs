@@ -1,5 +1,7 @@
 ﻿using InterviewApp.Core.DAL;
+using InterviewApp.Core.DAL.Repositories;
 using InterviewApp.Core.Dispatchers;
+using InterviewApp.Core.Repositories;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 
@@ -12,6 +14,8 @@ public static class Extensions
         IConfiguration config
     )
         => services
+            .AddScoped<IMoviesRepository, MoviesRepository>()
+            .AddDispatchers()
             .AddHandlers()
             .AddPostgres<InterviewAppDbContext>(config)
             .AddInitializer<MoviesDataInitializer>();

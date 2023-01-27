@@ -1,7 +1,7 @@
 ﻿using InterviewApp.Core.Entities;
-using InterviewApp.Core.Pagination;
 using InterviewApp.Core.Repositories;
 using Microsoft.EntityFrameworkCore;
+using System.Linq.Expressions;
 
 namespace InterviewApp.Core.DAL.Repositories;
 
@@ -16,17 +16,11 @@ internal sealed class MoviesRepository : IMoviesRepository
         _movies = _ctx.Movies;
     }
 
-    public async Task<Paged<MovieEntity>> GetAll(
-        int genre,
-        int releaseYear,
-        bool hasOscar
-    )
-    {
-        var elo = (await _movies.Paginate(
-            1,
-            20
-        )).Items.Where(q => q.Genre == genre);
-    }
+    public async Task<IEnumerable<MovieEntity>> GetAll(Expression<Func<MovieEntity, bool>> predicate)
+        => await _ctx.Movies
+            .Where(predicate)
+            .ToListAsync()
+            .ConfigureAwait(false);
 
     public Task<MovieEntity?> Get(Guid id)
         => _movies.SingleOrDefaultAsync(q => q.Id == id);

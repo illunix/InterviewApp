@@ -1,4 +1,6 @@
-﻿using InterviewApp.API.Extensions;
+﻿using InterviewApp.API.Caching;
+using InterviewApp.API.Exceptions;
+using InterviewApp.API.Logging;
 using InterviewApp.API.Swagger;
 using InterviewApp.Core;
 using InterviewApp.Core.Handlers;
@@ -12,17 +14,19 @@ builder
     .Services
     .AddErrorHandling()
     .AddSwaggerDocs(config)
-    .AddCore(config);
+    .AddCore(config)
+    .AddRedisOutputCache(config);
 
 var app = builder.Build();
 
 app.MapGet(
-    "/api/movies/genres",
+    "/api/movies",
     async (
-        GetMoviesQuery req,
+        [AsParameters] GetMoviesQuery req,
         IDispatcher dispatcher
     ) => Results.Ok(await dispatcher.Send(req))
 )
+    .CacheOutput(q => q.Tag("movies"))
     .WithTags("Movies")
     .WithName("Get Movies")
     .Produces(StatusCodes.Status200OK)
@@ -34,11 +38,13 @@ app.MapGet(
         IDispatcher dispatcher
     ) => Results.Ok(await dispatcher.Send(new GetMovieGenresQuery()))
 )
+    .CacheOutput(q => q.Tag("moviesGenres"))
     .WithTags("Movies")
     .WithName("Get Movies Genres")
     .Produces(StatusCodes.Status200OK)
     .Produces(StatusCodes.Status400BadRequest);
 
+app.UseOutputCache();
 app.UseSwaggerDocs();
 app.UseHttpsRedirection();
 app.Run();

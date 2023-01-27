@@ -1,4 +1,4 @@
-﻿namespace InterviewApp.API.Options;
+﻿namespace InterviewApp.API.Logging;
 
 internal sealed class SerilogOptions
 {

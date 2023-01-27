@@ -1,6 +1,6 @@
 ﻿using InterviewApp.Core.Abstractions;
 
-namespace InterviewApp.Core.Dispatchers;
+namespace InterviewApp.Core.Handlers;
 
 internal interface IQueryDispatcher
 {

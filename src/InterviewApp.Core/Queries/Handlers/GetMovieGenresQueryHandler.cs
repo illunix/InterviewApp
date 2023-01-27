@@ -1,5 +1,5 @@
-﻿using InterviewApp.Core.Dispatchers;
-using InterviewApp.Core.Enums;
+﻿using InterviewApp.Core.Enums;
+using InterviewApp.Core.Handlers;
 
 namespace InterviewApp.Core.Queries.Handlers;
 

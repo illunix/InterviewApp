@@ -1,6 +1,7 @@
-﻿using InterviewApp.Core.Dispatchers;
+﻿using InterviewApp.Core.Builders;
 using InterviewApp.Core.DTOs;
-using InterviewApp.Core.Pagination;
+using InterviewApp.Core.Entities;
+using InterviewApp.Core.Handlers;
 using InterviewApp.Core.Repositories;
 
 namespace InterviewApp.Core.Queries.Handlers;
@@ -16,5 +17,33 @@ internal sealed class GetMoviesQueryHandler : IQueryHandler<GetMoviesQuery, IEnu
         GetMoviesQuery req,
         CancellationToken ct
     )
-        => _repo.GetAll();
+    {
+        if (
+            req.ReleaseYear is not null &&
+            req.ReleaseYear?.ToString().Length != 4
+        )
+            throw new ArgumentException(
+                "Invalid year.",
+                nameof(req.ReleaseYear)
+            );
+
+        var predicate = PredicateBuilder.True<MovieEntity>();
+
+        if (req.ReleaseYear is not null)
+            predicate = predicate.And(q => q.ReleaseYear == req.ReleaseYear);
+
+        if (
+            req.HasOscar == true &&
+            req.HasOscar is not null
+        )
+            predicate = predicate.And(q => q.HasOscar == true);
+
+        return (await _repo.GetAll(predicate)).Select(q => new MovieDTO(
+            q.Name!,
+            q.Description!,
+            q.Genre,
+            q.ReleaseYear,
+            q.HasOscar
+        )).ToList();
+    }
 }

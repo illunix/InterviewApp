@@ -1,4 +1,5 @@
 ﻿using InterviewApp.Core.Abstractions;
+using InterviewApp.Core.Handlers;
 using Microsoft.Extensions.DependencyInjection;
 
 namespace InterviewApp.Core.Dispatchers;

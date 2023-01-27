@@ -1,10 +1,9 @@
-﻿using InterviewApp.API.Options;
-using InterviewApp.Core;
+﻿using InterviewApp.Core;
 using Serilog;
 using Serilog.Events;
 using Serilog.Filters;
 
-namespace InterviewApp.API.Extensions;
+namespace InterviewApp.API.Logging;
 
 internal static class LoggingExtensions
 {
