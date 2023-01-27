@@ -29,6 +29,9 @@ internal sealed class GetMoviesQueryHandler : IQueryHandler<GetMoviesQuery, IEnu
 
         var predicate = PredicateBuilder.True<MovieEntity>();
 
+        if (req.Genre is not null)
+            predicate = predicate.And(q => q.Genre == req.Genre);
+
         if (req.ReleaseYear is not null)
             predicate = predicate.And(q => q.ReleaseYear == req.ReleaseYear);
 
